@@ -26,7 +26,7 @@ const listarProductos = async (req, res) => {
       if (!categoriaExiste) {
         return res.status(404).json({ message: "Categoria no encontrada" });
       }
-      filter.category_id = req.query.category;
+      filter.category_id = req.query.category_id;
     }
 
     if (req.query.search) filter.name = new RegExp(req.query.search, "i");
