@@ -11,8 +11,6 @@ const validarCampos = require('../middlewares/validarcampos.meddlewares');
 - DELETE /categories/:id → Eliminar (usuario autenticado).
 - Los productos deben estar vinculados a una categoría válida. */
 
-
-
 categoriaRouter.post("/",verificarToken,[
     check('name', 'El nombre de la categoria es obligatorio').not().isEmpty(),
     check('despcrition', 'La descripcion de la categoria es obligatoria').not(),
