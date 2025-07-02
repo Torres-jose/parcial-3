@@ -28,7 +28,7 @@ const listaCategoria = async (req, res) =>{
         console.log(error);
         return res.status(500).json({error: "error al obtener las categorias"});
     }
-}
+};
 //actulizar categoria
 const actulizarCategoria = async (req, res) =>{
     try {
@@ -36,9 +36,9 @@ const actulizarCategoria = async (req, res) =>{
         if(!update) return res.status(500).json({error: "No se a encontrado registro"});
         return res.json(update);
     } catch (error) {
-        return res.status(500).json({error: "Error al actulizar categoria"})
+        return res.status(500).json({error: "Error al actulizar categoria"});
     }
-}
+};
 //eliminar categoria
 const eliminarCategoria = async (req, res) =>{
     try {
@@ -46,6 +46,8 @@ const eliminarCategoria = async (req, res) =>{
         if(!delete_categoria) return res.status(500).json({error: "No se a encontrado registro"});
         return res.json({message:"categoria eliminada"});
     } catch (error) {
-        return res.status(500).json({error: "Error al actulizar categoria"})
+        return res.status(500).json({error: "Error al actulizar categoria"});
     }
-}
+};
+
+module.exports = { crearCategoria, listaCategoria, actulizarCategoria, eliminarCategoria}; 

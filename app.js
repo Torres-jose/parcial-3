@@ -8,7 +8,9 @@ conexion();
 
 //Importacion de ruta
 const UsuarioRouter = require('./routes/users.routes');
+const CategoriaRouter = require('./routes/categoria.routes');
 app.use('/api/usuario',UsuarioRouter);
+app.use('/api/categoria',CategoriaRouter);
 
 app.listen(puerto, () => {
     console.log(`Servidor corriendo en http://localhost:${puerto}`);

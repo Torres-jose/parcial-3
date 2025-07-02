@@ -7,7 +7,7 @@ const conexion = () => {
         console.log("conexion exitosa..");
     })
 
-    .catch(()=>{
+    .catch((error)=>{
         console.log("Error" + error.message)
     })
 };
