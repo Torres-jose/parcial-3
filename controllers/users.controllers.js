@@ -29,7 +29,7 @@ const LoginUsuario = async (req, res)=>{
         if(!bcrypt.compareSync(req.body.password, usuario.password))
             return res.status(500).json({status:false, message:"contraseña incorrecta"});//cambia a usuario o passwor no encontrado
         //Genera el token
-        const token = jwt.sign({id: usuario._id, username:usuario.username, fullname:usuario.fullname}, process.env.KEY, {expiresIn:'120s'});
+        const token = jwt.sign({id: usuario._id, username:usuario.username, fullname:usuario.fullname}, process.env.KEY, {expiresIn:'1h'});
             return res.status(200).json({status: true, message:"Login exitoso",token: token});
     } catch (error) {
         return res.status(500).json({status:false, message:error.message});
