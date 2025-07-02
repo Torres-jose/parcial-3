@@ -1,4 +1,4 @@
-const Categories = require("../models/categoria.moduls");
+const Categories = require("../models/categoria.models");
 /*- POST /categories → Crear categoría (usuario autenticado)*.
 - GET /categories → Listar categorías.
 - PUT /categories/:id → Editar categoría (usuario autenticado).
