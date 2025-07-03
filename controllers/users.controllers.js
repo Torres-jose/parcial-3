@@ -38,7 +38,7 @@ const LoginUsuario = async (req, res)=>{
 
 const PerfilUsuario = async (req, res)=>{
     try {
-        const usuario = await Usuario.findById(req.usuarioId).select('-password');
+        const usuario = await Usuario.findById(req.user.id).select('-password');
 
         if(!usuario){return res.status(404).json({status:false, message: "Usuario no encotrado"});} 
 

@@ -16,7 +16,7 @@ reviewsRouter.post("/",verificarToken,[
     validarCampos
 ],crearReviews);
 
-reviewsRouter.get("/:id", verificarToken,listarReviews);
+reviewsRouter.get("/:product_id", verificarToken,listarReviews);
 reviewsRouter.put("/:id",verificarToken,editarReviewas);
 reviewsRouter.delete("/:id",verificarToken,eliminarReviewas);
 

@@ -1,6 +1,6 @@
-const { ResultWithContextImpl } = require("express-validator/lib/chain");
+
 const Reviews = require("../models/reviews.models");
-const { model } = require("mongoose");
+const mongoose = require("mongoose");
 
 const crearReviews = async (req, res)=>{
     try {
@@ -10,7 +10,7 @@ const crearReviews = async (req, res)=>{
             user_id:req.user.id,
             rating,
             comment,
-            create_at: new Date()
+            created_at: new Date()
         });
         await reviews.save();
         res.status(201).json({message: "Reseña registrada",data: reviews});
@@ -23,7 +23,14 @@ const listarReviews = async (req, res) =>{
     try {
         const {product_id} = req.params;
 
-        const reviews = (await Reviews.find({product_id})).populate('product_id','name');
+         // Verifica que el product_id sea válido
+        if (!mongoose.Types.ObjectId.isValid(product_id)) {
+            return res.status(400).json({ message: "ID de producto no válido" });
+        }
+
+        const productId = new mongoose.Types.ObjectId(product_id);
+
+        const reviews = await Reviews.find({product_id: productId}).populate('product_id','name');
 
         if(reviews.length === 0){
             return res.status(404).json({message: "No hay reseñas de este productos"});
@@ -55,7 +62,7 @@ const editarReviewas = async (req, res) =>{
             return res.status(404).json({message: "Reseña no encontrada"});
         }
 
-        if(reviews.user_id.toString() !== req.user_id){
+        if(reviews.user_id.toString() !== req.user.id){
              return res.status(403).json({ 
                 message: "No tienes permiso para editar esta reseña." 
             });
@@ -83,7 +90,7 @@ const eliminarReviewas = async (req, res)=>{
             return res.status(404).json({message: "Reseña no encontrada"});
         }
 
-        if(reviews.user_id.toString() !== req.user_id){
+        if(reviews.user_id.toString() !== req.user.id){
              return res.status(403).json({ 
                 message: "No tienes permiso para editar esta reseña." 
             });
