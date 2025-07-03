@@ -92,7 +92,7 @@ const eliminarReviewas = async (req, res)=>{
 
         if(reviews.user_id.toString() !== req.user.id){
              return res.status(403).json({ 
-                message: "No tienes permiso para editar esta reseña." 
+                message: "No tienes permiso para Eliminar esta reseña." 
             });
         }
 
