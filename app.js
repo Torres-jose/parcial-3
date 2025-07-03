@@ -10,9 +10,11 @@ conexion();
 const UsuarioRouter = require('./routes/users.routes');
 const CategoriaRouter = require('./routes/categoria.routes');
 const productoRouter = require('./routes/productos.routes');
+const reviewsRouter = require('./routes/reviews.routes');
 app.use('/api/usuario',UsuarioRouter);
 app.use('/api/categoria',CategoriaRouter);
 app.use('/api/producto',productoRouter);
+app.use('/api/reviews',reviewsRouter);
 
 app.listen(puerto, () => {
     console.log(`Servidor corriendo en http://localhost:${puerto}`);
