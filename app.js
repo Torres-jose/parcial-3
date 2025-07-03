@@ -9,8 +9,10 @@ conexion();
 //Importacion de ruta
 const UsuarioRouter = require('./routes/users.routes');
 const CategoriaRouter = require('./routes/categoria.routes');
+const productoRouter = require('./routes/productos.routes');
 app.use('/api/usuario',UsuarioRouter);
 app.use('/api/categoria',CategoriaRouter);
+app.use('/api/producto',productoRouter);
 
 app.listen(puerto, () => {
     console.log(`Servidor corriendo en http://localhost:${puerto}`);

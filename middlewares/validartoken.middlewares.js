@@ -8,7 +8,7 @@ const verificarToken = (req, res, next) =>{
         jwt.verify(token, process.env.KEY, (error, data) =>{
             if(error) return res.status(500).json({status:false, message: "Token invalido o expirado" })
             
-                req.usuarioId = data.id;
+                req.user = data;
                 next();
         })
         

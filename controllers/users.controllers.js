@@ -15,7 +15,7 @@ const RegistrarUsuario = async (req, res)=>{
    }
 };
 
- //no loge arreglar ahora mas tarde 5:00 am
+ //son las 5:am no logre arreglas 
         //11: am era una referencia equibocado a la base de datos 
         //buscar usuario
 const LoginUsuario = async (req, res)=>{
