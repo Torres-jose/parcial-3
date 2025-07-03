@@ -21,6 +21,7 @@ const crearProductos = async (req, res) => {
 const listarProductos = async (req, res) => {
   try {
     const filter = {};
+
     if (req.query.category_id) {
       const categoriaExiste = await Categoria.findById(req.query.category_id);
       if (!categoriaExiste) {
@@ -31,11 +32,9 @@ const listarProductos = async (req, res) => {
 
     if (req.query.search) filter.name = new RegExp(req.query.search, "i");
 
-    const products = await Productos.find(filter)
-      .populate("categories_id")
-      .populate("created_by");
+    const products = await Productos.find(filter).populate("category_id");
 
-    if (products === 0) {
+    if (products.length === 0) {
       return res
         .status(404)
         .json({
@@ -53,11 +52,9 @@ const listarProductos = async (req, res) => {
 const detalleProductos = async (req, res) => {
   try {
     //agregar promedio de calificcion
-    const products = await Productos.findById(req.params.id).populate(
-      "categories_id"
-    );
+    const products = await Productos.findById(req.params.id).populate("category_id");
     if (!products)
-      return res.status(404).josn({ message: "Producto no encotrado" });
+      return res.status(404).json({ message: "Producto no encotrado" });
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: error.message, message: "Error en el detalle del producto" });

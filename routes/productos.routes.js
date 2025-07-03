@@ -17,7 +17,7 @@ productoRouter.post("/",verificarToken,[
 ], crearProductos);
 
 productoRouter.get("/",verificarToken,[
-    check('category', 'El id de la categoría no puede estar vacío').not().notEmpty(),
+    check('category_id', 'El id de la categoría no puede estar vacío').not().notEmpty(),
     check('search', 'El campo de búsqueda no debe estar vacío').not().notEmpty(),
   validarCampos
 ], listarProductos);
